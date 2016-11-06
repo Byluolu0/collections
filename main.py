@@ -1,10 +1,26 @@
 # -*- coding: utf-8 -*-
 
+
+
 import requests
 import os
 
-user_agent = {'User-agent': 'Mozilla/5.1'}
-r = requests.get('http://www.zhihu.com/people/luoluo-53', headers = user_agent)
+import encrypt
+
+#user_agent = {'User-agent': 'Mozilla/5.1'}
+#r = requests.get('http://www.zhihu.com/people/luoluo-53', headers = user_agent)
+
+
+data = encrypt.gen_data()
+
+url = 'http://music.163.com/weapi/v1/resource/comments/R_SO_4_26427666'
+
+headers = {
+    'Cookie': 'appver=1.5.0.75771;',
+    'Referer': 'http://music.163.com/'
+}
+
+r = requests.post(url, headers = headers, data = data)
 
 path = os.getcwd() + '/origin'
 f = open(path, 'w')
